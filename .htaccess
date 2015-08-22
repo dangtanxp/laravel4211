@@ -1,0 +1,13 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+
+RewriteCond %{THE_REQUEST} \s/+(.+?[^/])[?\s] [NC]
+RewriteRule ^ /%1/ [L,R=301]
+
+# remove /public/ from URL
+RewriteCond %{REQUEST_URI} !/public/ [NC]
+RewriteRule ^(.*?)/?$ public/$1 [L]
